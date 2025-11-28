@@ -3,7 +3,7 @@ import Note from "../../../../lib/models/Note";
 import { verifyToken } from "../../../../lib/auth";
 
 export async function DELETE(req) {
-    await connectDB;
+    await connectDB();
     console.log("delete db connect");
 
     const userId = verifyToken(req);

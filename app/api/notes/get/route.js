@@ -3,7 +3,7 @@ import Note from "../../../../lib/models/Note";
 import { verifyToken } from "../../../../lib/auth";
 
 export async function GET(req) {
-    await connectDB;
+    await connectDB();
     console.log("get db connented");
 
     const userId = verifyToken(req);

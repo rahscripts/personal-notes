@@ -3,7 +3,7 @@ import Note from "../../../../lib/models/Note";
 import { verifyToken } from "../../../../lib/auth";
 //ADD NOTE API( PROTECTED )
 export async function POST(req) {
-    await connectDB;
+    await connectDB();
     console.log("db connect bro");
 
     const userId = verifyToken(req);
