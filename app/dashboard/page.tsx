@@ -69,14 +69,14 @@ export default function DashboardPage() {
       {/* Add Note */}
       <div className="mb-6">
         <input
-          className="border p-2 w-full mb-2"
+          className="border rounded border-green-600 hover:border-green-300 p-2 w-full mb-2"
           placeholder="Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
 
         <textarea
-          className="border p-2 w-full mb-2"
+          className="border rounded border-green-600 hover:border-green-300 p-2 w-full mb-2"
           placeholder="Content"
           value={content}
           onChange={(e) => setContent(e.target.value)}
@@ -84,7 +84,7 @@ export default function DashboardPage() {
 
         <button
           onClick={handleAdd}
-          className="bg-green-600 text-white p-2 rounded"
+          className="bg-green-600 curson-pointer font-bold hover:bg-green-700 text-white p-2 rounded"
         >
           Add Note
         </button>
@@ -93,16 +93,21 @@ export default function DashboardPage() {
       {/* Notes List */}
       <div>
         {notes.map((n) => (
-          <div key={n._id} className="border p-3 rounded mb-4">
-            <h2 className="font-bold">{n.title}</h2>
-            <p>{n.content}</p>
-
-            <button
-              onClick={() => handleDelete(n._id)}
-              className="bg-red-500 text-white p-1 mt-2 rounded"
-            >
-              Delete
-            </button>
+          <div key={n._id} className=" border p-3 rounded mb-4">
+            <div className="flex justify-between items-center space-x-4 p-4">
+                <div>
+                    <h2 className="font-bold text-2xl mb-1 lg:text-4xl">{n.title}</h2>
+                    <p className="opacity-80 text-green-900 font-medium">{n.content}</p>
+                </div>
+                <div>
+                    <button
+                      onClick={() => handleDelete(n._id)}
+                      className="bg-red-500 hover:bg-red-600 cursor-pointer px-2 font-bold text-white p-1 mt-2 rounded"
+                    >
+                      Delete
+                    </button>
+                </div>
+            </div>
           </div>
         ))}
       </div>
