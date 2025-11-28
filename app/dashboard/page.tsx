@@ -18,7 +18,7 @@ export default function DashboardPage() {
     const loadNotes = async () => {
         const res = await fetch("/api/notes/get", {
             headers: {
-                Authorization: `Beared ${token}`
+                Authorization: `Bearer ${token}`
             },
         });
 
@@ -37,7 +37,7 @@ export default function DashboardPage() {
         const res = await fetch("/api/notes/add", {
             method: "POST",
             headers: {
-                Authorization: `Beared ${token}`,
+                Authorization: `Bearer ${token}`,
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({title, content}),
