@@ -116,7 +116,7 @@ export default function Home() {
           ].map((group, idx) => (
             <div key={idx}>
               <h3 className="font-bold text-2xl text-green-950 mb-2">{group.title}</h3>
-              <ul className="space-y-1">
+              <ul className="space-y-1 mb-5">
                 {group.links.map((link, i) => (
                   <li
                     key={i}
@@ -129,6 +129,9 @@ export default function Home() {
             </div>
           ))}
 
+        </div>
+        <div className="font-bold max-w-3xl mx-auto flex items-center justify-center underline">
+          Created by MRahman😴 <span className="italic opacity-30 text-sm p-2">I am a student, learning Next.js framework. </span>
         </div>
       </section>
 
