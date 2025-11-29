@@ -46,8 +46,8 @@ export default function Home() {
           <div>
             <Image width={500} height={500} src={NotesImage} alt="Notes-image" className="shadow-lg saturate-100 m-4 p-2 shadow-green-500" />
           </div>
-          <div className="flex flex-col justify-center text-2xl md:text-4xl items-center mt-5">
-            <div>
+          <div className="flex flex-col justify-center text-2xl md:text-5xl items-center mb-2 mt-5">
+            <div className="tracking-tighter">
               CREATE YOUR <span className="font-bold">FREE</span> ACCOUNT NOW
             </div>
           </div>
@@ -67,7 +67,7 @@ export default function Home() {
           <div className="uppercase px-3 font-semibold rounded text-green-700 text-2xl overline">
             Features
           </div>
-          <div className="max-md:text-3xl text-5xl transition-all uppercase p-5 font-bold">
+          <div className="max-md:text-3xl text-5xl transition-all uppercase p-5 mb-8 font-bold">
             Your New Workflow
           </div>
           <div className="bg-green-200 p-10 rounded">
