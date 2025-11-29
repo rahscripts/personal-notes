@@ -7,12 +7,14 @@ export default function DashboardPage() {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
 
+    const [search, setSearch] = useState("");
+
     const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
     useEffect(() => {
         if (!token) {
             window.location.href = "/login";
-     }
+        }
     }, [token]);
 
     const loadNotes = async () => {
@@ -40,7 +42,7 @@ export default function DashboardPage() {
                 Authorization: `Bearer ${token}`,
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({title, content}),
+            body: JSON.stringify({ title, content }),
         });
 
         setTitle('');
@@ -55,7 +57,7 @@ export default function DashboardPage() {
                 Authorization: `Bearer ${token}`,
                 "Content-Type": 'application/json',
             },
-            body: JSON.stringify({id}),
+            body: JSON.stringify({ id }),
         });
 
         loadNotes();
@@ -63,54 +65,61 @@ export default function DashboardPage() {
 
 
     return (
-        <div className="p-10 mx-auto max-w-xl">
-      <h1 className="text-3xl font-bold mb-4">Your Notes</h1>
+        <div>
+            <div className="p-10 max-w-xl mx-auto">
+                <input
+                    className="border p-2 rounded w-full mb-4"
+                    placeholder="Search Notes..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)} />
+            </div>
+            <div className="p-10 mx-auto max-w-xl">
+                <h1 className="text-3xl font-bold mb-4">Your Notes</h1>
 
-      {/* Add Note */}
-      <div className="mb-6">
-        <input
-          className="border rounded border-green-600 hover:border-green-300 p-2 w-full mb-2"
-          placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-
-        <textarea
-          className="border rounded border-green-600 hover:border-green-300 p-2 w-full mb-2"
-          placeholder="Content"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        ></textarea>
-
-        <button
-          onClick={handleAdd}
-          className="bg-green-600 cursor-pointer font-bold hover:bg-green-700 text-white p-2 rounded"
-        >
-          Add Note
-        </button>
-      </div>
-
-      {/* Notes List */}
-      <div>
-        {notes.map((n) => (
-          <div key={n._id} className=" border p-3 rounded mb-4">
-            <div className="flex justify-between items-center space-x-4 p-4">
-                <div>
-                    <h2 className="font-bold text-2xl mb-1 lg:text-4xl">{n.title}</h2>
-                    <p className="opacity-80 text-green-900 font-medium">{n.content}</p>
-                </div>
-                <div>
+                {/* Add Note */}
+                <div className="mb-6">
+                    <input
+                        className="border rounded border-green-600 hover:border-green-300 p-2 w-full mb-2"
+                        placeholder="Title"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                    />
+                    <textarea
+                        className="border rounded border-green-600 hover:border-green-300 p-2 w-full mb-2"
+                        placeholder="Content"
+                        value={content}
+                        onChange={(e) => setContent(e.target.value)}
+                    ></textarea>
                     <button
-                      onClick={() => handleDelete(n._id)}
-                      className="bg-red-500 hover:bg-red-600 cursor-pointer px-2 font-bold text-white p-1 mt-2 rounded"
+                        onClick={handleAdd}
+                        className="bg-green-600 cursor-pointer font-bold hover:bg-green-700 text-white p-2 rounded"
                     >
-                      Delete
+                        Add Note
                     </button>
                 </div>
+
+                {/* Notes List */}
+                <div>
+                    {notes
+                        .filter(n =>
+                            n.title.toLowerCase().includes(search.toLowerCase()) ||
+                            n.content.toLowerCase().includes(search.toLowerCase())
+                        )
+                        .map((n) => (
+                            <div key={n._id} className="border p-3 rounded mb-4">
+                                <h2 className="font-bold">{n.title}</h2>
+                                <p>{n.content}</p>
+                                <button
+                                    onClick={() => handleDelete(n._id)}
+                                    className="bg-red-500 hover:bg-red-600 cursor-pointer font-bold px-2 text-sm text-white p-1 mt-2 rounded"
+                                >
+                                    Delete
+                                </button>
+                            </div>
+                        ))}
+
+                </div>
             </div>
-          </div>
-        ))}
-      </div>
-    </div>
+        </div>
     )
 }

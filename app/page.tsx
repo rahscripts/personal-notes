@@ -85,7 +85,6 @@ export default function Home() {
         </div>
       </section>
       {/* footer */}
-      {/* footer */}
       <section className="bg-gradient-to-b from-white via-green-200/40 to-white py-10">
         <div className="max-w-4xl mx-auto p-4 md:flex justify-between gap-10">
 
