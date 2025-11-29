@@ -1,10 +1,12 @@
 import Image from "next/image";
+import SignupBtn from "@/components/SignupBtn";
+import LoginBtn from "@/components/LoginBtn";
 
 export default function Home() {
   return (
    <section>
-    <div className="bg-green-200 pb-6 pt-1">
-      <div className="flex items-center justify-between max-w-3xl mx-auto mt-5 p3">
+    <div className="bg-green-200">
+      <div className="flex items-center justify-between max-w-3xl mx-auto mt-5 p-3">
         <div className="text-1xl lg:text-2xl font-bold transition-all">
           Personal-notes <span className="italic text-sm rotate-6 underline bg-green-400 p-2">by MR</span>
         </div>
@@ -18,10 +20,10 @@ export default function Home() {
         </div>
         <div className="flex space-x-2">
           <div>
-            signup btn
+            <SignupBtn />
           </div>
           <div>
-            login btn
+            <LoginBtn />
           </div>
         </div>
       </div>
