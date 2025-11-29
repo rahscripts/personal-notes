@@ -14,12 +14,12 @@ export default function Home() {
               Personal-notes <span className="italic text-sm rotate-6 underline bg-green-400 p-2">by MR</span>
             </div>
             <div className="flex space-x-2.5 max-md:hidden">
-              <p className="hover:underline cursor-pointer">
+              <a className="hover:underline cursor-pointer">
                 FAQ
-              </p>
-              <p className="hover:underline cursor-pointer">
-                feedback
-              </p>
+              </a>
+              <a href="#features" className="hover:underline cursor-pointer">
+                features
+              </a>
             </div>
             <div className="flex space-x-2">
               <div>
@@ -62,7 +62,7 @@ export default function Home() {
 
         </div>
       </section>
-      <section>
+      <section id="features" className="mb-20">
         <div className="flex flex-col items-center justify-center max-w-3xl mx-auto mt-20 p-3">
           <div className="uppercase px-3 font-semibold rounded text-green-700 text-2xl overline">
             Features
