@@ -2,6 +2,7 @@ import Image from "next/image";
 import SignupBtn from "@/components/SignupBtn";
 import LoginBtn from "@/components/LoginBtn";
 import NotesImage from '@/components/notes.png';
+import FeaturesList from "@/components/FeaturesList";
 
 export default function Home() {
   return (
@@ -59,6 +60,24 @@ export default function Home() {
             <SignupBtn />
           </div>
 
+        </div>
+      </section>
+      <section>
+        <div className="flex flex-col items-center justify-center max-w-3xl mx-auto mt-20 p-3">
+          <div className="uppercase px-3 font-semibold rounded text-green-700 text-2xl overline">
+            Features
+          </div>
+          <div className="max-md:text-3xl text-5xl transition-all uppercase p-5 font-bold">
+            Your New Workflow
+          </div>
+          <div className="bg-green-200 p-10 rounded">
+            <ul className="space-y-2 max-md:font-semibold">
+              <FeaturesList>Seamless Sync & Universal Access</FeaturesList>
+              <FeaturesList>Powerful, Hyper-Speed Search</FeaturesList>
+              <FeaturesList>The Ultimate Distraction-Free Editor</FeaturesList>
+              <FeaturesList>Complete Privacy & Security</FeaturesList>
+            </ul>
+          </div>
         </div>
       </section>
     </>

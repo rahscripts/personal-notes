@@ -84,7 +84,7 @@ export default function DashboardPage() {
 
         <button
           onClick={handleAdd}
-          className="bg-green-600 curson-pointer font-bold hover:bg-green-700 text-white p-2 rounded"
+          className="bg-green-600 cursor-pointer font-bold hover:bg-green-700 text-white p-2 rounded"
         >
           Add Note
         </button>
