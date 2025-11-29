@@ -3,10 +3,12 @@ import SignupBtn from "@/components/SignupBtn";
 import LoginBtn from "@/components/LoginBtn";
 import NotesImage from '@/components/notes.png';
 import FeaturesList from "@/components/FeaturesList";
+import Link from "next/link";
 
 export default function Home() {
   return (
     <>
+      {/* Head */}
       <section>
         <div className="bg-green-200">
           <div className="flex items-center justify-between max-w-3xl mx-auto mt-5 p-3">
@@ -32,6 +34,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      {/* Hero Section */}
       <section className="bg-gradient-to-b from-white via-green-200 to-white">
         <div className="flex flex-col items-center justify-center max-w-3xl mx-auto mt-5 p-3">
           <div className="text-3xl min-md:text-5xl transition-all font-bold p-1">
@@ -62,6 +65,7 @@ export default function Home() {
 
         </div>
       </section>
+      {/* Features */}
       <section id="features" className="mb-20">
         <div className="flex flex-col items-center justify-center max-w-3xl mx-auto mt-20 p-3">
           <div className="uppercase px-3 font-semibold rounded text-green-700 text-2xl overline">
@@ -80,6 +84,55 @@ export default function Home() {
           </div>
         </div>
       </section>
+      {/* footer */}
+      {/* footer */}
+      <section className="bg-gradient-to-b from-white via-green-200/40 to-white py-10">
+        <div className="max-w-4xl mx-auto p-4 md:flex justify-between gap-10">
+
+          {[
+            {
+              title: "Navigation",
+              links: [
+                { name: "Home", href: "/" },
+                { name: "Features", href: "/features" }
+              ],
+            },
+            {
+              title: "Quick Links",
+              links: [
+                { name: "Sign Up", href: "/signup" },
+                { name: "Login", href: "/login" },
+                { name: "Dashboard (if logged in)", href: "/dashboard" }
+              ],
+            },
+            {
+              title: "Connect with Maker",
+              links: [
+                { name: "Instagram", href: "https://instagram.com" },
+                { name: "Twitter", href: "https://twitter.com" },
+                { name: "YouTube", href: "https://youtube.com" },
+                { name: "Threads", href: "https://threads.net" }
+              ],
+            },
+          ].map((group, idx) => (
+            <div key={idx}>
+              <h3 className="font-bold text-2xl text-green-950 mb-2">{group.title}</h3>
+              <ul className="space-y-1">
+                {group.links.map((link, i) => (
+                  <li
+                    key={i}
+                    className="opacity-60 hover:opacity-100 font-semibold cursor-pointer transition"
+                  >
+                    <Link href={link.href}>{link.name}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+
+        </div>
+      </section>
+
     </>
   );
 }
