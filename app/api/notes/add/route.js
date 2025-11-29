@@ -1,6 +1,6 @@
-import { connectDB } from "../../../../lib/db";
-import Note from "../../../../lib/models/Note";
-import { verifyToken } from "../../../../lib/auth";
+import { connectDB } from "@/lib/db";
+import Note from "@/lib/models/Note";
+import { verifyToken } from "@/lib/auth";
 //ADD NOTE API( PROTECTED )
 export async function POST(req) {
     await connectDB();
