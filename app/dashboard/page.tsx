@@ -1,9 +1,15 @@
 'use client';
 
+type Note = {
+    _id: string;
+    title: string;
+    content: string;
+}
+
 import { useEffect, useState } from "react";
 
 export default function DashboardPage() {
-    const [notes, setNotes] = useState([]);
+    const [notes, setNotes] = useState<Note[]>([]);
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
 
@@ -50,7 +56,7 @@ export default function DashboardPage() {
         loadNotes();
     }
 
-    const handleDelete = async (id) => {
+    const handleDelete = async (id: string) => {
         await fetch("/api/notes/delete", {
             method: "DELETE",
             headers: {
