@@ -6,6 +6,7 @@ type Note = {
     content: string;
 }
 
+import { div } from "framer-motion/client";
 import { useEffect, useState } from "react";
 
 export default function DashboardPage() {
@@ -70,7 +71,7 @@ export default function DashboardPage() {
     }
 
 
-    const notesLength=notes.length;
+    const notesLength = notes.length;
     console.log(notesLength);
 
     return (
@@ -129,6 +130,10 @@ export default function DashboardPage() {
                                 </button>
                             </div>
                         ))}
+                    {notes.length === 0 && (
+                        <div className="text-gray-600 transition-all duration-400 my-auto py-20 flex items-center justify-center text-2xl max-lg:text-sm">“Your thoughts deserve a home. Start writing.”</div>
+                    )}
+
 
                 </div>
             </div>
