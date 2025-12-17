@@ -144,7 +144,7 @@ Your thoughts deserve a home. Start writing`;
             </div>
             <div className="p-10 mx-auto max-w-xl">
                 <div className="mb-4 flex items-baseline justify-between">
-                    <h1 className="text-2xl font-bold ">Your Notes</h1>
+                    <h1 className="text-2xl font-bold tracking-tight ">Your Notes</h1>
                     <p>📝 Total notes: {notesLength}</p>
                 </div>
 
@@ -164,7 +164,7 @@ Your thoughts deserve a home. Start writing`;
                     ></textarea>
                     <button
                         onClick={handleAdd}
-                        className="bg-green-600 cursor-pointer font-bold hover:bg-green-700 text-white p-2 rounded"
+                        className="bg-green-500 tracking-tight cursor-pointer font-medium hover:bg-green-700 text-white p-2 rounded"
                     >
                         Add Note
                     </button>
@@ -183,11 +183,11 @@ Your thoughts deserve a home. Start writing`;
                                 <p className="tracking-tight">{n.content}</p>
                                 <button
                                     onClick={() => handleDelete(n._id)}
-                                    className="bg-red-500 hover:bg-red-600 cursor-pointer font-bold px-2 text-sm text-white p-1 mt-2 rounded"
+                                    className="bg-red-400 tracking-tight font-medium hover:bg-red-500 cursor-pointer px-2 text-sm text-white p-1 mt-2 rounded"
                                 >
                                     Delete
                                 </button>
-                                <button className="bg-blue-600 cursor-pointer p-1 rounded mx-2 text-white" onClick={() => handleRead(n)}>Read</button>
+                                <button className="bg-blue-400 tracking-tight hover:bg-blue-500 cursor-pointer p-1 px-2 text-sm font-medium rounded mx-2 text-white" onClick={() => handleRead(n)}>Read</button>
                             </div>
                         ))}
                     {notes.length === 0 && (
@@ -205,7 +205,7 @@ Your thoughts deserve a home. Start writing`;
                 <div>
                     {isOpen && (
                         <div className="fixed inset-x-20 inset-y-30 rounded-lg bg-gray-300 flex backdrop-blur-lg opacity-94 text-black duration-200 transition-all mx-auto">
-                            <div className="flex flex-col items-start justify-center opacity-100 m-20 bg-gray-100 p-10 m rounded-lg ">
+                            <div className="flex flex-col items-start w-full justify-center opacity-100 m-20 bg-gray-100 p-10 m rounded-lg ">
                                 <p className="mb-10 tracking-tighter">fell in love with reading your notes???📝☺️    </p>                           
                                 <h1 className="font-bold tracking-tighter uppercase  text-4xl">{selectedNote?.title}</h1>
                                 <p className="opacity-95 tracking-tight">{selectedNote?.content}</p>
