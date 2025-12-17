@@ -70,6 +70,9 @@ export default function DashboardPage() {
     }
 
 
+    const notesLength=notes.length;
+    console.log(notesLength);
+
     return (
         <div>
             <div className="p-10 max-w-xl mx-auto">
@@ -80,7 +83,10 @@ export default function DashboardPage() {
                     onChange={(e) => setSearch(e.target.value)} />
             </div>
             <div className="p-10 mx-auto max-w-xl">
-                <h1 className="text-3xl font-bold mb-4">Your Notes</h1>
+                <div className="mb-4 flex items-baseline justify-between">
+                    <h1 className="text-2xl font-bold ">Your Notes</h1>
+                    <p>📝 Total notes: {notesLength}</p>
+                </div>
 
                 {/* Add Note */}
                 <div className="mb-6">

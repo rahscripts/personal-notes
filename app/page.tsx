@@ -131,7 +131,7 @@ export default function Home() {
 
         </div>
         <div className="font-bold max-w-3xl mx-auto flex items-center justify-center underline">
-          Created by MRahman😴 <span className="italic opacity-30 text-sm p-2">I am a student, learning Next.js framework. </span>
+          Created by MRahman😴 <span className="italic opacity-30 text-sm p-2">built with lots of love, skipping integration and diffrentiation.</span>
         </div>
       </section>
 
