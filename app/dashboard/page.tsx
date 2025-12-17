@@ -16,6 +16,9 @@ export default function DashboardPage() {
 
     const [search, setSearch] = useState("");
 
+    const [isOpen, setIsOpen] = useState(false);
+    const [selectedNote, setSelectedNote] = useState<Note | null>(null);
+
     ///auto type effect:
     const text = `Build notes. 
 Your thoughts deserve a home. Start writing`;
@@ -36,7 +39,7 @@ Your thoughts deserve a home. Start writing`;
     useEffect(() => {
         let i = 0;
         const x = setInterval(() => setPt(placeHolderText.slice(0, ++i)), 60);
-        const y= setTimeout(() => {
+        const y = setTimeout(() => {
             clearInterval(x);
             setPt("Title");
         }, 5000);
@@ -50,14 +53,14 @@ Your thoughts deserve a home. Start writing`;
     useEffect(() => {
         let i = 0;
         const x = setInterval(() => setPd(placeHolderDescription.slice(0, ++i)), 60);
-        const y=setTimeout(() => {
+        const y = setTimeout(() => {
             clearInterval(x);
             setPd("Type your thoughts here. Simple, clean space to capture ideas.")
         }, 10000);
-    return () => {
-        clearInterval(x);
-        clearInterval(y)
-    }
+        return () => {
+            clearInterval(x);
+            clearInterval(y)
+        }
     }, []);
 
 
@@ -118,9 +121,17 @@ Your thoughts deserve a home. Start writing`;
         loadNotes();
     }
 
+    const handleRead = (note) => {
+        setSelectedNote(note);
+        setIsOpen(true);
+        console.log('button read clicked')
+    }
+
+    const handleClose = () => {
+        setIsOpen(false);
+    }
 
     const notesLength = notes.length;
-    console.log(notesLength);
 
     return (
         <div>
@@ -169,13 +180,14 @@ Your thoughts deserve a home. Start writing`;
                         .map((n) => (
                             <div key={n._id} className="border p-3 rounded mb-4">
                                 <h2 className="font-bold">{n.title}</h2>
-                                <p>{n.content}</p>
+                                <p className="tracking-tight">{n.content}</p>
                                 <button
                                     onClick={() => handleDelete(n._id)}
                                     className="bg-red-500 hover:bg-red-600 cursor-pointer font-bold px-2 text-sm text-white p-1 mt-2 rounded"
                                 >
                                     Delete
                                 </button>
+                                <button className="bg-blue-600 cursor-pointer p-1 rounded mx-2 text-white" onClick={() => handleRead(n)}>Read</button>
                             </div>
                         ))}
                     {notes.length === 0 && (
@@ -186,6 +198,23 @@ Your thoughts deserve a home. Start writing`;
 
                     )}
 
+
+
+
+                </div>
+                <div>
+                    {isOpen && (
+                        <div className="fixed inset-x-20 inset-y-30 rounded-lg bg-gray-300 flex backdrop-blur-lg opacity-94 text-black duration-200 transition-all mx-auto">
+                            <div className="flex flex-col items-start justify-center opacity-100 m-20 bg-gray-100 p-10 m rounded-lg ">
+                                <p className="mb-10 tracking-tighter">fell in love with reading your notes???📝☺️    </p>                           
+                                <h1 className="font-bold tracking-tighter uppercase  text-4xl">{selectedNote?.title}</h1>
+                                <p className="opacity-95 tracking-tight">{selectedNote?.content}</p>
+                                <button className="bg-gray-400 mt-5 rounded p-1 tracking-tighter font-medium cursor-pointer" onClick={handleClose}>close</button>
+                            </div>
+
+                        </div>
+
+                    )}
 
                 </div>
             </div>
