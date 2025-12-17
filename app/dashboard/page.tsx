@@ -16,6 +16,39 @@ export default function DashboardPage() {
 
     const [search, setSearch] = useState("");
 
+    ///auto type effect:
+    const text = `Build notes. 
+Your thoughts deserve a home. Start writing`;
+    const placeHolderText = "Yesterday At Gym 💪🏻";
+    const placeHolderDescription =
+        "I pressed the full stack on the shoulder press machine with control. A small but powerful reminder that consistency, focus, and discipline always pay off.";
+
+    const [t, setT] = useState("");
+    const [pt, setPt] = useState("");
+    const [pd, setPd] = useState("");
+
+    useEffect(() => {
+        let i = 0;
+        const x = setInterval(() => setT(text.slice(0, ++i)), 100);
+        return () => clearInterval(x);
+    }, []);
+
+    useEffect(() => {
+        let i = 0;
+        const x = setInterval(() => setPt(placeHolderText.slice(0, ++i)), 60);
+        return () => clearInterval(x);
+    }, []);
+
+    useEffect(() => {
+        let i = 0;
+        const x = setInterval(() => setPd(placeHolderDescription.slice(0, ++i)), 60);
+        return () => clearInterval(x);
+    }, []);
+
+
+
+
+
     const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
     useEffect(() => {
@@ -93,13 +126,13 @@ export default function DashboardPage() {
                 <div className="mb-6">
                     <input
                         className="border rounded border-green-600 hover:border-green-300 p-2 w-full mb-2"
-                        placeholder="Title"
+                        placeholder={pt}
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                     />
                     <textarea
-                        className="border rounded border-green-600 hover:border-green-300 p-2 w-full mb-2"
-                        placeholder="Content"
+                        className="border rounded border-green-600 hover:border-green-300 min-h-[100px] resize-y p-2 w-full mb-2"
+                        placeholder={pd}
                         value={content}
                         onChange={(e) => setContent(e.target.value)}
                     ></textarea>
@@ -131,7 +164,10 @@ export default function DashboardPage() {
                             </div>
                         ))}
                     {notes.length === 0 && (
-                        <div className="text-gray-600 transition-all duration-400 my-auto py-20 flex items-center justify-center text-2xl max-lg:text-sm">“Your thoughts deserve a home. Start writing.”</div>
+                        <div>
+                            <h1 className="max-lg:text-sm text-1xl duration-300 transition-all flex text-center py-20 justify-center">{t}<span className="animate-pulse">|</span></h1>
+                        </div>
+
                     )}
 
 
