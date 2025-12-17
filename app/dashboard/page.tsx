@@ -36,13 +36,28 @@ Your thoughts deserve a home. Start writing`;
     useEffect(() => {
         let i = 0;
         const x = setInterval(() => setPt(placeHolderText.slice(0, ++i)), 60);
-        return () => clearInterval(x);
+        const y= setTimeout(() => {
+            clearInterval(x);
+            setPt("Title");
+        }, 5000);
+
+        return () => {
+            clearInterval(x);
+            clearInterval(y)
+        }
     }, []);
 
     useEffect(() => {
         let i = 0;
         const x = setInterval(() => setPd(placeHolderDescription.slice(0, ++i)), 60);
-        return () => clearInterval(x);
+        const y=setTimeout(() => {
+            clearInterval(x);
+            setPd("Type your thoughts here. Simple, clean space to capture ideas.")
+        }, 10000);
+    return () => {
+        clearInterval(x);
+        clearInterval(y)
+    }
     }, []);
 
 
@@ -165,7 +180,8 @@ Your thoughts deserve a home. Start writing`;
                         ))}
                     {notes.length === 0 && (
                         <div>
-                            <h1 className="max-lg:text-sm text-1xl duration-300 transition-all flex text-center py-20 justify-center">{t}<span className="animate-pulse">|</span></h1>
+                            <h1 className="max-lg:text-sm text-1xl duration-300 transition-all flex text-center py-20 justify-center">Build notes.
+                                Your thoughts deserve a home. Start writing</h1>
                         </div>
 
                     )}
