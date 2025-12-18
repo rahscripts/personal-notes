@@ -177,7 +177,7 @@ Your thoughts deserve a home. Start writing`;
                             n.content.toLowerCase().includes(search.toLowerCase())
                         )
                         .map((n) => (
-                            <div key={n._id} className="border p-3 rounded mb-4">
+                            <div key={n._id} className="border shadow-green-600 shadow-sm p-3 rounded mb-4">
                                 <div className=''>
                                     <div className="flex items-center justify-between">
                                         <h2 className="font-bold">🎄{n.title}</h2>
