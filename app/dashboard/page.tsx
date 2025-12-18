@@ -121,7 +121,7 @@ Your thoughts deserve a home. Start writing`;
         loadNotes();
     }
 
-    const handleRead = (note) => {
+    const handleRead = (note: object) => {
         setSelectedNote(note);
         setIsOpen(true);
         console.log('button read clicked')
@@ -179,15 +179,16 @@ Your thoughts deserve a home. Start writing`;
                         )
                         .map((n) => (
                             <div key={n._id} className="border p-3 rounded mb-4">
-                                <h2 className="font-bold">{n.title}</h2>
-                                <p className="tracking-tight">{n.content}</p>
+                                <div onClick={() => handleRead(n)} className="cursor-pointer">
+                                    <h2 className="font-bold">🎄{n.title}</h2>
+                                    <p className="tracking-tight">{n.content}</p>
+                                </div>
                                 <button
                                     onClick={() => handleDelete(n._id)}
                                     className="bg-red-400 tracking-tight font-medium hover:bg-red-500 cursor-pointer px-2 text-sm text-white p-1 mt-2 rounded"
                                 >
                                     Delete
                                 </button>
-                                <button className="bg-blue-400 tracking-tight hover:bg-blue-500 cursor-pointer p-1 px-2 text-sm font-medium rounded mx-2 text-white" onClick={() => handleRead(n)}>Read</button>
                             </div>
                         ))}
                     {notes.length === 0 && (
@@ -218,6 +219,7 @@ Your thoughts deserve a home. Start writing`;
 
                 </div>
             </div>
+            
         </div>
     )
 }
