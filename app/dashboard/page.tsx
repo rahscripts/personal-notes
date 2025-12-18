@@ -179,16 +179,19 @@ Your thoughts deserve a home. Start writing`;
                         )
                         .map((n) => (
                             <div key={n._id} className="border p-3 rounded mb-4">
-                                <div onClick={() => handleRead(n)} className="cursor-pointer">
-                                    <h2 className="font-bold">🎄{n.title}</h2>
-                                    <p className="tracking-tight">{n.content}</p>
+                                <div className=''>
+                                    <div className="flex items-center justify-between">
+                                        <h2 className="font-bold">🎄{n.title}</h2>
+                                        <div className="duration-300 transition-all" onClick={() => handleDelete(n._id)}> 
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="size-5 bg-gray-700 rounded text-white cursor-pointer">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+                                           </svg>
+                                        </div>
+                                    </div>
+                                    <div onClick={() => handleRead(n)} className="cursor-pointer">
+                                        <p className="tracking-tight">{n.content}</p>
+                                    </div>
                                 </div>
-                                <button
-                                    onClick={() => handleDelete(n._id)}
-                                    className="bg-red-400 tracking-tight font-medium hover:bg-red-500 cursor-pointer px-2 text-sm text-white p-1 mt-2 rounded"
-                                >
-                                    Delete
-                                </button>
                             </div>
                         ))}
                     {notes.length === 0 && (
@@ -207,7 +210,7 @@ Your thoughts deserve a home. Start writing`;
                     {isOpen && (
                         <div className="fixed inset-x-20 inset-y-30 rounded-lg bg-gray-300 flex backdrop-blur-lg opacity-94 text-black duration-200 transition-all mx-auto">
                             <div className="flex flex-col items-start w-full justify-center opacity-100 m-20 bg-gray-100 p-10 m rounded-lg ">
-                                <p className="mb-10 tracking-tighter">fell in love with reading your notes???📝☺️    </p>                           
+                                <p className="mb-10 tracking-tighter">fell in love with reading your notes???📝☺️    </p>
                                 <h1 className="font-bold tracking-tighter uppercase  text-4xl">{selectedNote?.title}</h1>
                                 <p className="opacity-95 tracking-tight">{selectedNote?.content}</p>
                                 <button className="bg-gray-400 mt-5 rounded p-1 tracking-tighter font-medium cursor-pointer" onClick={handleClose}>close</button>
@@ -219,7 +222,7 @@ Your thoughts deserve a home. Start writing`;
 
                 </div>
             </div>
-            
+
         </div>
     )
 }
