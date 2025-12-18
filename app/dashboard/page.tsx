@@ -13,7 +13,6 @@ export default function DashboardPage() {
     const [notes, setNotes] = useState<Note[]>([]);
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
-
     const [search, setSearch] = useState("");
 
     const [isOpen, setIsOpen] = useState(false);
@@ -182,14 +181,18 @@ Your thoughts deserve a home. Start writing`;
                                 <div className=''>
                                     <div className="flex items-center justify-between">
                                         <h2 className="font-bold">🎄{n.title}</h2>
-                                        <div className="duration-300 transition-all" onClick={() => handleDelete(n._id)}> 
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="size-5 bg-gray-700 rounded text-white cursor-pointer">
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-                                           </svg>
+                                        <div className="flex items-center gap-2 px-2 ">
+                                            <span className="text-xs italic opacity-50 ">{n.content.split(' ').length} words!</span>
+                                            <div className="duration-300 transition-all" onClick={() => handleDelete(n._id)}>
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="size-5 bg-gray-700 rounded text-white cursor-pointer">
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+                                               </svg>
+                                        </div>
                                         </div>
                                     </div>
                                     <div onClick={() => handleRead(n)} className="cursor-pointer">
                                         <p className="tracking-tight">{n.content}</p>
+                                        
                                     </div>
                                 </div>
                             </div>
