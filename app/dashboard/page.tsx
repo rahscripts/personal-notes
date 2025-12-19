@@ -248,9 +248,12 @@ Your thoughts deserve a home. Start writing`;
                                     <p className="text-xs italic text-gray-500">
                                         {formatDate(selectedNote?.createdAt)}
                                     </p>
-                                    <h1 className="text-4xl font-semibold tracking-tight uppercase">
-                                        {selectedNote?.title}
-                                    </h1>
+                                    <div className="flex items-baseline justify-between pr-5 it">
+                                        <h1 className="text-4xl font-semibold tracking-tight uppercase">
+                                            {selectedNote?.title}
+                                        </h1>
+                                        <p className="text-xs ">{selectedNote?.content.split(' ').length} words</p>
+                                    </div>
                                 </div>
 
                                 <p className="text-gray-700 leading-relaxed">
