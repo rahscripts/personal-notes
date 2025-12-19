@@ -16,7 +16,7 @@ export default function DashboardPage() {
     const [content, setContent] = useState("");
     const [search, setSearch] = useState("");
 
-    
+
     const [isOpen, setIsOpen] = useState(false);
     const [selectedNote, setSelectedNote] = useState<Note | null>(null);
 
@@ -196,14 +196,14 @@ Your thoughts deserve a home. Start writing`;
                                             <span className="text-xs italic opacity-50 ">{formatDate(n.createdAt)}</span>
                                             <div className="duration-300 transition-all" onClick={() => handleDelete(n._id)}>
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="size-5 bg-gray-700 rounded text-white cursor-pointer">
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-                                               </svg>
-                                        </div>
+                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+                                                </svg>
+                                            </div>
                                         </div>
                                     </div>
                                     <div onClick={() => handleRead(n)} className="cursor-pointer">
                                         <p className="tracking-tight">{n.content}</p>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -220,22 +220,49 @@ Your thoughts deserve a home. Start writing`;
 
 
                 </div>
-                <div>
-                    {isOpen && (
-                        <div className="fixed inset-x-20 inset-y-30 rounded-lg bg-gray-300 flex backdrop-blur-lg opacity-94 text-black duration-200 transition-all mx-auto">
-                            <div className="flex flex-col items-start w-full justify-center opacity-100 m-20 bg-gray-100 p-10 m rounded-lg -space-y-1">
-                                <p className="mb-10 tracking-tighter">fell in love with reading your notes???📝☺️    </p>
-                                <p className="text-xs italic">{formatDate(selectedNote?.createdAt)}</p>
-                                <h1 className="font-bold tracking-tighter uppercase  text-4xl">{selectedNote?.title}</h1>
-                                <p className="opacity-95 tracking-tight">{selectedNote?.content}</p>
-                                <button className="bg-gray-400 mt-5 rounded p-1 tracking-tighter font-medium cursor-pointer" onClick={handleClose}>close</button>
+                {isOpen && (
+                    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-md">
+
+                        <div className="relative w-[90%] max-w-2xl rounded-2xl bg-gray-100 p-10 shadow-xl">
+
+                            {/* Close button */}
+                            <button
+                                onClick={handleClose}
+                                className="absolute top-4 right-4 rounded-full p-2 hover:bg-gray-200 transition cursor-pointer"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    strokeWidth={1.5}
+                                    stroke="currentColor"
+                                    className="size-5"
+                                >
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+
+                            {/* Content */}
+                            <div className="mt-8 space-y-3">
+                                <div className="-space-y-1 text-green-800">
+                                    <p className="text-xs italic text-gray-500">
+                                        {formatDate(selectedNote?.createdAt)}
+                                    </p>
+                                    <h1 className="text-4xl font-semibold tracking-tight uppercase">
+                                        {selectedNote?.title}
+                                    </h1>
+                                </div>
+
+                                <p className="text-gray-700 leading-relaxed">
+                                    {selectedNote?.content}
+                                </p>
                             </div>
 
                         </div>
+                    </div>
+                )}
 
-                    )}
 
-                </div>
             </div>
 
         </div>
