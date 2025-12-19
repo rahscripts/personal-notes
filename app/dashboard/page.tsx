@@ -7,7 +7,12 @@ type Note = {
     createdAt: string;
 }
 
-import { div } from "framer-motion/client";
+type User = {
+    _id: string;
+    name: string;
+    email: string;
+}
+
 import { useEffect, useState } from "react";
 
 export default function DashboardPage() {
@@ -15,6 +20,24 @@ export default function DashboardPage() {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [search, setSearch] = useState("");
+    const [user, setUser] = useState<User | null>(null);
+
+     const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
+
+
+    useEffect(() => {
+        if (!token) return;
+
+        fetch("/api/user/me", {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        })
+            .then(res => res.json())
+            .then(data => setUser(data));
+    }, [token]);
+
+
 
 
     const [isOpen, setIsOpen] = useState(false);
@@ -68,7 +91,7 @@ Your thoughts deserve a home. Start writing`;
 
 
 
-    const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
+   
 
     useEffect(() => {
         if (!token) {
@@ -146,11 +169,13 @@ Your thoughts deserve a home. Start writing`;
     return (
         <div>
             <div className="p-10 max-w-xl mx-auto">
+                
                 <input
                     className="border p-2 rounded w-full mb-4"
                     placeholder="Search Notes..."
                     value={search}
                     onChange={(e) => setSearch(e.target.value)} />
+
             </div>
             <div className="p-10 mx-auto max-w-xl">
                 <div className="mb-4 flex items-baseline justify-between">
@@ -252,7 +277,7 @@ Your thoughts deserve a home. Start writing`;
                                         <h1 className="text-4xl font-semibold tracking-tight uppercase">
                                             {selectedNote?.title}
                                         </h1>
-                                        <p className="text-xs ">{selectedNote?.content.split(' ').length} words</p>
+                                        <p className="text-xs d">{selectedNote?.content.split(' ').length} words</p>
                                     </div>
                                 </div>
 
@@ -266,6 +291,11 @@ Your thoughts deserve a home. Start writing`;
                 )}
 
 
+            </div>
+            <div className="max-w-2xl mx-auto px-20 flex items-center justify-center m-30 py-20 ">
+                <p className="fixed bottom-6 items-baseline text-sm text-green-900 font-black italic">
+                    Welcome <span className="text-black font-medium text-2xl">{user?.name}👋🏻</span>
+                </p>
             </div>
 
         </div>

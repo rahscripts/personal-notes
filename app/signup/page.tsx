@@ -1,8 +1,9 @@
-'use client';
+"use client";
 
 import { useState } from "react";
 
 export default function SignupPage() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -10,7 +11,7 @@ export default function SignupPage() {
     const res = await fetch("/api/auth/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ name, email, password }),
     });
 
     const data = await res.json();
@@ -30,6 +31,13 @@ export default function SignupPage() {
 
         <input
           className="w-full p-3 mb-4 rounded bg-neutral-800 outline-none"
+          placeholder="Enter your name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+
+        <input
+          className="w-full p-3 mb-4 rounded bg-neutral-800 outline-none"
           type="email"
           placeholder="Email"
           value={email}
@@ -46,7 +54,7 @@ export default function SignupPage() {
 
         <button
           onClick={handleSignup}
-          className="w-full bg-green-600 hover:bg-green-700 p-3 rounded text-white font-bold"
+          className="w-full bg-green-600 hover:bg-green-700 p-3 rounded font-bold"
         >
           Sign Up
         </button>

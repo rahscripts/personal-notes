@@ -5,7 +5,7 @@ import bcrypt from "bcryptjs";
 export async function POST(req) {
     await connectDB();
     console.log('signup api hit');
-    const {email, password} = await req.json();
+    const {name, email, password} = await req.json();
 
     //check existing user
     const exists = await User.findOne({ email });
@@ -16,6 +16,7 @@ export async function POST(req) {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = await User.create({
+        name,
         email,
         password: hashedPassword
     });
