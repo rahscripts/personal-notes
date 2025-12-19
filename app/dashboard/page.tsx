@@ -4,6 +4,7 @@ type Note = {
     _id: string;
     title: string;
     content: string;
+    createdAt: string;
 }
 
 import { div } from "framer-motion/client";
@@ -15,6 +16,7 @@ export default function DashboardPage() {
     const [content, setContent] = useState("");
     const [search, setSearch] = useState("");
 
+    
     const [isOpen, setIsOpen] = useState(false);
     const [selectedNote, setSelectedNote] = useState<Note | null>(null);
 
@@ -130,6 +132,15 @@ Your thoughts deserve a home. Start writing`;
         setIsOpen(false);
     }
 
+    const formatDate = (dateString) => {
+        return new Date(dateString).toLocaleString('en-IN', {
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+        });
+    };
     const notesLength = notes.length;
 
     return (
@@ -181,8 +192,8 @@ Your thoughts deserve a home. Start writing`;
                                 <div className=''>
                                     <div className="flex items-center justify-between">
                                         <h2 className="font-bold">🎄{n.title}</h2>
-                                        <div className="flex items-center gap-2 px-2 ">
-                                            <span className="text-xs italic opacity-50 ">{n.content.split(' ').length} words!</span>
+                                        <div className="flex items-center gap-2 px-1 ">
+                                            <span className="text-xs italic opacity-50 ">{formatDate(n.createdAt)}</span>
                                             <div className="duration-300 transition-all" onClick={() => handleDelete(n._id)}>
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="size-5 bg-gray-700 rounded text-white cursor-pointer">
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
@@ -212,8 +223,9 @@ Your thoughts deserve a home. Start writing`;
                 <div>
                     {isOpen && (
                         <div className="fixed inset-x-20 inset-y-30 rounded-lg bg-gray-300 flex backdrop-blur-lg opacity-94 text-black duration-200 transition-all mx-auto">
-                            <div className="flex flex-col items-start w-full justify-center opacity-100 m-20 bg-gray-100 p-10 m rounded-lg ">
+                            <div className="flex flex-col items-start w-full justify-center opacity-100 m-20 bg-gray-100 p-10 m rounded-lg -space-y-1">
                                 <p className="mb-10 tracking-tighter">fell in love with reading your notes???📝☺️    </p>
+                                <p className="text-xs italic">{formatDate(selectedNote?.createdAt)}</p>
                                 <h1 className="font-bold tracking-tighter uppercase  text-4xl">{selectedNote?.title}</h1>
                                 <p className="opacity-95 tracking-tight">{selectedNote?.content}</p>
                                 <button className="bg-gray-400 mt-5 rounded p-1 tracking-tighter font-medium cursor-pointer" onClick={handleClose}>close</button>

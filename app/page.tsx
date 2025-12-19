@@ -93,7 +93,7 @@ export default function Home() {
               title: "Navigation",
               links: [
                 { name: "Home", href: "/" },
-                { name: "Features", href: "/features" }
+                { name: "Features", href: "#features" }
               ],
             },
             {
