@@ -18,6 +18,7 @@ export async function GET(req) {
     const user = await User.findById(decoded.userId).select("name email");
 
     return Response.json(user);
+    
   } catch (err) {
     return Response.json({ error: "Invalid token" }, { status: 401 });
   }

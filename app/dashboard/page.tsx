@@ -1,5 +1,6 @@
 'use client';
 
+
 type Note = {
     _id: string;
     title: string;
@@ -21,6 +22,7 @@ export default function DashboardPage() {
     const [content, setContent] = useState("");
     const [search, setSearch] = useState("");
     const [user, setUser] = useState<User | null>(null);
+    const [theme, setTheme] = useState('dark');
 
      const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
@@ -167,8 +169,9 @@ Your thoughts deserve a home. Start writing`;
     const notesLength = notes.length;
 
     return (
-        <div>
-            <div className="p-10 max-w-xl mx-auto">
+        <div className={theme === "dark" ? "dark" : ""
+        }>
+            <div className="p-10 max-w-xl mx-auto ">
                 
                 <input
                     className="border p-2 rounded w-full mb-4"
@@ -203,6 +206,14 @@ Your thoughts deserve a home. Start writing`;
                     >
                         Add Note
                     </button>
+                    <div>
+                        <button
+                          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                          className="px-3 py-1 rounded bg-zinc-200  dark:bg-green-800"
+                        >
+                          {theme === "dark" ? "Light" : "Dark"}
+                        </button>
+                    </div>
                 </div>
 
                 {/* Notes List */}

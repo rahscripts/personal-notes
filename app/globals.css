@@ -1,3 +1,4 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 @keyframes typing{from{width:0}to{width:14ch}} .animate-typing{animation:typing 3s steps(14) infinite alternate}
